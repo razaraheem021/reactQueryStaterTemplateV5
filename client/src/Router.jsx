@@ -11,6 +11,8 @@ import NotFoundError from './pages/errors/NotFoundError'
 import querystring from 'query-string'
 import ProtectedRoute from './lib/petectedRoute'
 import Contacts from './pages/contact'
+import { RootBoundary } from './pages/errors/RootBondary'
+import { getToken } from './lib/auth'
 
 const router = createBrowserRouter([
   {
@@ -28,6 +30,8 @@ const router = createBrowserRouter([
         </ProtectedRoute>
       </QueryParamProvider>
     ),
+    errorElement: <RootBoundary />,
+    loader: getToken,
     children: [
       { path: '/', element: <Todo /> },
       { path: '/contacts', element: <Contacts /> },

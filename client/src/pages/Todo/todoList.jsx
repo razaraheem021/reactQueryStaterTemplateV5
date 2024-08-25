@@ -24,22 +24,30 @@ const TodoList = () => {
   //   })
 
   const deleteTodo = useDeleteData({
-    endpoint: '/todos',
+    endpoint: '/api/todo',
     queryKeys: ['todos'],
   })
 
   const handleDeleteTodo = (id) => {
+    console.log(id)
     deleteTodo.mutate(id)
   }
 
-  if (isLoading) return <p>Loading todos...</p>
-
+  if (status !== 'success') return <p>Loading todos...</p>
+  console.log(status)
   return (
     <ul>
       {todos?.data?.map((todo) => (
         <li key={todo.id}>
           {todo.title}
-          <button onClick={() => handleDeleteTodo(todo.id)}>Delete</button>
+          <button
+            onClick={() => {
+              console.log(todo)
+              handleDeleteTodo(todo._id)
+            }}
+          >
+            Delete
+          </button>
         </li>
       ))}
     </ul>

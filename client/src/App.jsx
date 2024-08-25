@@ -1,7 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Outlet } from 'react-router-dom'
+import { autoLogoutLoader } from './lib/auth'
 
 const App = () => {
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      console.log('----------Running after every 10 seconds-----------')
+      autoLogoutLoader()
+    }, 10000)
+
+    // Cleanup the interval on component unmount
+    return () => clearInterval(intervalId)
+  }, [])
   return (
     <div>
       <header>

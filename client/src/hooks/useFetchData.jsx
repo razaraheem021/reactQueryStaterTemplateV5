@@ -10,7 +10,7 @@ export const useFetchData = ({ endpoint, queryKeys = [], queryFn }) => {
   const { data, status, error } = useQuery({
     queryKey: queryKeys,
     queryFn: queryFn || defaultQueryFn,
-    staleTime: 1000 * 60 * 5, // Data is considered fresh for 5 minutes
+    // staleTime: 1000 * 60 * 5, // Data is considered fresh for 5 minutes
     cacheTime: 1000 * 60 * 10, // Data stays in cache for 10 minutes even after it's no longer used
   })
 

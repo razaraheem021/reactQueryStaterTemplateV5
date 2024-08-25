@@ -36,11 +36,24 @@ exports.login = async (req, res) => {
         .json({ status: 'error', message: 'Invalid username or password' })
     }
 
+    // Define the token expiration time (in seconds)
+    const expiresIn = 60 * 60 // 1 hour
+
+    // Generate the token
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-      expiresIn: '1h',
+      expiresIn,
     })
 
-    res.json({ status: 'success', message: 'Login successful', token })
+    // Calculate the exact expiration time in milliseconds
+    const expiresAt = Date.now() + expiresIn * 1000 // Convert to milliseconds
+
+    // Respond with the token and expiration time
+    res.json({
+      status: 'success',
+      message: 'Login successful',
+      token,
+      expiresAt, // Include the expiration time in the response
+    })
   } catch (error) {
     res.status(500).json({ status: 'error', message: 'Login failed', error })
   }
