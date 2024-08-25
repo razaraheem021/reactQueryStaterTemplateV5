@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { getRequest } from '../endpoints' // Import the getRequest function
+import { getRequest } from '@/services/endpoints' // Import the getRequest function
 
 export const useFetchData = ({ endpoint, queryKeys = [], queryFn }) => {
   // Default query function if none is provided

@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useState } from 'react'
-import { postRequest } from '../endpoints'
+import { postRequest } from '../services/endpoints'
 
 export const useCreateData = ({ endpoint, queryKeys }) => {
   const [formData, setFormData] = useState({})

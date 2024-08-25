@@ -1,14 +1,24 @@
-import { useState } from 'react'
-import './App.css'
-import TodoData from './TodoData'
-import Form from './form'
+import React from 'react'
+import { Outlet } from 'react-router-dom'
 
-function App() {
+const App = () => {
   return (
-    <>
-      <Form />
-      <TodoData />
-    </>
+    <div>
+      <header>
+        <h1>Todo App</h1>
+        <button
+          onClick={() => {
+            localStorage.removeItem('token')
+            window.location.replace('/login')
+          }}
+        >
+          Log out
+        </button>
+      </header>
+      <main>
+        <Outlet />
+      </main>
+    </div>
   )
 }
 
